@@ -35,14 +35,18 @@ function SearchBar({ onSearch }: SearchBarProps) {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const publicBase = import.meta.env.BASE_URL || '/';
+  const backgroundUrl = isMobile
+    ? `${publicBase}images/pattern-bg-mobile.png`
+    : `${publicBase}images/pattern-bg-desktop.png`;
+
   return (
     <div style={{ position: "relative", width: "100%", height: "200px" }}>
-        <img src={
-            isMobile
-             ? "../images/pattern-bg-mobile.png" 
-             : "../images/pattern-bg-desktop.png"}
-            alt="Logo"  style={{zIndex:"-1", position:"relative",width:"100%", left:"0px", top:"0px", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat",}}
-        />
+      <img
+        src={backgroundUrl}
+        alt="Background"
+        style={{ zIndex: -1, position: "relative", width: "100%", left: "0px", top: "0px", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}
+      />
         
         <div style={{width:"100%", top:"20px",position:"absolute", display:"flex", flexDirection:"column", alignItems:"center", color:"#fff", zIndex:1000}}> 
 
