@@ -15,7 +15,7 @@ function NavBar() {
 
   return (
     <nav
-      className="w-full bg-[#F7F9FB] dark:bg-[var(--second-primary-color)] sticky top-0 z-50 border-b border-gray-100 dark:border-[#1e293b]"
+      className="w-full bg-[#F7F9FB] dark:bg-[var(--second-primary-color)] sticky top-0 z-[1000] border-b border-gray-100 dark:border-[#1e293b]"
       role="navigation"
       aria-label="Main navigation"
     >

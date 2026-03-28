@@ -9,6 +9,7 @@ export interface IpApiResponse {
     lat: number;
     lng: number;
     country: string;
+    countryCode: string;
   };
 }
 
