@@ -1,5 +1,7 @@
-﻿
-import { useState, useEffect, type FormEvent, type ChangeEvent } from "react";
+import { Search } from "lucide-react";
+import { useState, type FormEvent, type ChangeEvent } from "react";
+import { TypeAnimation } from "react-type-animation";
+
 type SearchBarProps = {
   onSearch: (value: string) => void;
 };
@@ -9,90 +11,70 @@ function SearchBar({ onSearch }: SearchBarProps) {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     if (!input.trim()) return;
-
-    onSearch(input);
-    setInput(""); // optional
+    onSearch(input.trim());
+    setInput("");
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
   };
 
-
-  const [isMobile, setIsMobile] = useState<boolean>(
-    window.innerWidth <= 768
-  );
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const publicBase = import.meta.env.BASE_URL || '/';
-  const backgroundUrl = isMobile
-    ? `${publicBase}images/pattern-bg-mobile.png`
-    : `${publicBase}images/pattern-bg-desktop.png`;
-
   return (
-    <div style={{ position: "relative", width: "100%", height: "200px" }}>
-      <img
-        src={backgroundUrl}
-        alt="Background"
-        style={{ zIndex: -1, position: "relative", width: "100%", left: "0px", top: "0px", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}
-      />
-        
-        <div style={{width:"100%", top:"20px",position:"absolute", display:"flex", flexDirection:"column", alignItems:"center", color:"#fff", zIndex:1000}}> 
+    <section
+      className="w-full pt-8 pb-8 sm:pt-10 sm:pb-10 max-w-7xl mx-auto px-3 sm:px-5 lg:px-7"
+      aria-label="IP address search"
+    >
+      <div className="w-full flex flex-col items-center justify-center gap-3">
+        {/* Headline */}
+        <h1 className="font-bold text-center text-2xl sm:text-3xl text-[var(--black-color)] dark:text-white">
+          Locate Any{" "}
+          <span className="text-[#2E5BFF]">
+            <TypeAnimation
+              sequence={["IP Address", 1200, "", 300, "Domain", 1200, "", 300]}
+              speed={30}
+              repeat={Infinity}
+              aria-label="IP Address or Domain"
+            />
+          </span>
+        </h1>
 
-            <h1>IP Address Tracker</h1>
-
-            <form onSubmit={handleSubmit} style={styles.form}>
+        {/* Search form */}
+        <form
+          onSubmit={handleSubmit}
+          className="w-full max-w-[800px]"
+          role="search"
+        >
+          <div className="relative flex items-center focus-within:outline-2 focus-within:rounded-[10px] focus-within:outline-[#2E5BFF]">
+            <label htmlFor="ip-search-input" className="sr-only">
+              Search for any IP address or domain
+            </label>
             <input
-                type="text"
-                placeholder="Search for any IP address or domain"
-                value={input}
-                onChange={handleChange}
-                style={styles.input}
-                />
-
-            <button type="submit" style={styles.button}>
-                Search
+              id="ip-search-input"
+              type="text"
+              placeholder="Search for any IP address or domain..."
+              value={input}
+              onChange={handleChange}
+              autoComplete="off"
+              autoCapitalize="none"
+              spellCheck={false}
+              className="w-full p-3 pr-[90px] sm:pr-[110px] border text-[var(--black-color)] rounded-[10px] placeholder-[#94a3b8] placeholder:text-[14px] border-transparent dark:text-white bg-[#E0E3E5] dark:bg-[var(--inputBg-color)] outline-hidden text-[15px]"
+            />
+            <button
+              type="submit"
+              aria-label="Search"
+              className="group absolute right-1.5 top-1/2 -translate-y-1/2 p-2.5 px-4 sm:px-5 rounded-[8px] cursor-pointer text-white bg-[#2E5BFF] hover:bg-[#1a44e0] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#2E5BFF]"
+            >
+              <Search
+                className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-200 group-hover:scale-110"
+                aria-hidden="true"
+              />
             </button>
-            </form>
-        </div>
-
-    </div>
+          </div>
+        </form>
+      </div>
+    </section>
   );
 }
 
 export default SearchBar;
-
-// styles (same as before)
-const styles: { [key: string]: React.CSSProperties } = {
-  form: {
-    display: "flex",
-    justifyContent: "center",
-    margin: "20px 0",
-  },
-  input: {
-    padding: "10px",
-    width: "300px",
-    border: "1px solid #ccc",
-    borderRadius: "5px 0 0 5px",
-    outline: "none",
-  },
-  button: {
-    padding: "10px 15px",
-    border: "none",
-    backgroundColor: "#000",
-    color: "#fff",
-    cursor: "pointer",
-    borderRadius: "0 5px 5px 0",
-  },
-};

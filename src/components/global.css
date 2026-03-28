@@ -1,0 +1,14 @@
+:root {
+    --black-color: #191C1E;
+    /* --gray-color: #434656; */
+    --primary-color: #2E5BFF;
+}
+
+.dark {
+    --primary-color: #2E5BFF;
+    --second-primary-color: #0B1326;
+    --gray-color: #94a3b8;
+    --text-primary: #e5e7eb;
+    --inputBg-color: #1e293b;
+}
+/* 64748b */

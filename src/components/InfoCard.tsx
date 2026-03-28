@@ -21,7 +21,7 @@ function InfoCard({ ip, isp, location }: InfoCardProps) {
     }, [data])
     
   return (
-    <div className="card">
+    <div className="bg-amber-300">
       <div className="item">
         <p className="label">IP ADDRESS</p>
         <h2 className="value">{isData? ip : "Loading..."}</h2>

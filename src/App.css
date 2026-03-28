@@ -1,4 +1,4 @@
-* {
+/* * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -10,64 +10,9 @@ body,
 #root {
     height: 100%;
     overflow: hidden;
-}
+} */
 
-.card {
-    position: absolute;
-    top: 130px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80%;
-    max-width: 900px;
-    background-color: #fff;
-    border-radius: 15px;
-    display: flex;
-    justify-content: space-between;
-    padding: 25px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    z-index: 1000;
-}
 
-.item {
-    flex: 1;
-    padding: 0 15px;
-}
+@import "tailwindcss";
 
-.label {
-    font-size: 12px;
-    color: #888;
-    letter-spacing: 1px;
-    margin-bottom: 10px;
-}
-
-.value {
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.divider {
-    width: 1px;
-    background-color: #eee;
-}
-
-@media (max-width: 768px) {
-
-    .card {
-        flex-direction: column;
-        padding: 15px;
-    }
-
-    .item {
-        padding: 10px 0;
-        text-align: center;
-    }
-
-    .divider {
-        width: 80%;
-        height: 1px;
-        margin: 5px auto;
-    }
-    form {
-        width: 75%;
-    }
-}
+@custom-variant dark (&:where(.dark, .dark *));
